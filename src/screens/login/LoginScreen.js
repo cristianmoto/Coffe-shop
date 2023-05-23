@@ -6,6 +6,7 @@ import { firebaseConfig } from "../../Config/firebaseConfig";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import RegisterScreen from "./RegisterScreen";
+import { AntDesign } from '@expo/vector-icons'; 
 
 
 
