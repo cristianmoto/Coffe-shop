@@ -11,9 +11,11 @@ const MenuScreen = () => {
   const [myData, setMyData] = useState(data.slice(0, visibleItems));
 
   const cargarMasElementos = () => {
-    setVisibleItems(prevVisibleItems => prevVisibleItems + 5);
-    setMyData(data.slice(0, visibleItems + 5));
+    const newVisibleItems = visibleItems + 5;
+    setMyData(data.slice(0, newVisibleItems));
+    setVisibleItems(newVisibleItems);
   };
+
 
   return (
     <View style={styles.container} > 
@@ -44,7 +46,8 @@ const styles = StyleSheet.create({
     height: "20%",
   },
   container: {
-    marginBottom: 30,
+    flex:1,
+    marginBottom: 20,
     marginHorizontal:5,
  
   },

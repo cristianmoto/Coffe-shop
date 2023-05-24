@@ -23,12 +23,12 @@ export default Items
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'whitesmoke',
+        backgroundColor: '#f1f1f1',
         alignItems: 'center',
         justifyContent: 'center',
         borderColor: 'gray',
-        borderWidth: 0.5,
         borderRadius: 5,
+        borderBottomColor: 'gray',
         marginVertical: 3,
         flexDirection: 'row',
         alignItems: 'center',

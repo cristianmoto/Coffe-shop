@@ -1,19 +1,18 @@
 import React from "react";
-import { Image,ScrollView,TouchableOpacity,TextInput, StyleSheet, Text,  View,} from "react-native";
+import {TouchableOpacity,TextInput, StyleSheet, Text,  View,ImageBackground} from "react-native";
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,} from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword,} from "firebase/auth";
 import { firebaseConfig } from "../../Config/firebaseConfig";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import RegisterScreen from "./RegisterScreen";
-import { AntDesign } from '@expo/vector-icons'; 
 
 
 
 const LoginScreen = () => {
-
+ 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
   const navigation = useNavigation();
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
@@ -26,6 +25,8 @@ const LoginScreen = () => {
         const user = userCredential.user;
         console.log(user);
        navigation.navigate('Menu');
+       const { displayName } = userCredential.user;
+       setUserName(displayName);
       })
       .catch((error) => {
         console.log(error);
@@ -33,8 +34,11 @@ const LoginScreen = () => {
   };
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={require("../img/cafeLog.png")} />
-         <View>
+    <ImageBackground source={require('../img/cafeteria_login2.jpg')}  style={styles.image}>
+
+  
+     
+         <View style={styles.contenedor}>
             <Text style={styles.textInput}>Mail</Text>
             <TextInput
               onChangeText={(text) => setEmail(text)}
@@ -48,13 +52,15 @@ const LoginScreen = () => {
               placeholder="password"
               secureTextEntry={true}
             ></TextInput>
-          </View>
+         
           <TouchableOpacity onPress={handleSingIn} style={styles.button}>
             <Text style={styles.textInput2}>Login</Text>
           </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Registro')} style={styles.button}>
             <Text style={styles.textInput2}>Registro</Text>
           </TouchableOpacity>
+          </View >
+          </ImageBackground>
         </View>
   
   );
@@ -64,30 +70,41 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
     container: {
+       
         flex: 1,
         backgroundColor: '#f2f2f2',
+     
+      },
+      contenedor:{
+
+        marginVertical: 170,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent:'center',
       },
     image: {
-        width:'45%',
-        height:'38%',
-        resizeMode: "cover",
+      flex:1,
+     
+       resizeMode: 'cover',
+       
       },
     input: {
       width: 250,
       height: 50,
       marginVertical: 10,
       padding: 10,
-      borderWidth:2,
+      borderWidth:1,
       borderColor: "#451717",
       borderRadius: 10,
-      backgroundColor: "#fff",
+      backgroundColor: 'rgba(255, 255, 255, 0.3)',
+      color: 'white',
+      fontSize: 20,
+      fontWeight: "600",
     },
     textInput: {
-      fontSize: 17,
-      fontWeight: "400",
-      color: "#696969",
+      justifyContent:'flex-start',
+      fontSize: 20,
+      fontWeight: "600",
+      color: "#fff",
     },
     textInput2: {
       fontSize: 20,
@@ -95,13 +112,14 @@ const styles = StyleSheet.create({
       color: "#f1f1f1",
     },
     button: {
+      marginVertical:10,
       width: 250,
       height: 40,
       borderRadius: 10,
-      backgroundColor: "#451717",
+      backgroundColor: 'rgba(44, 33, 30, 0.8)',
       alignItems: "center",
       justifyContent: "center",
-      marginVertical: 10,
+      
       color: '#fafafa',
     },
 

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View ,ScrollView, TextInput, TouchableOpacity} from 'react-native'
+import { StyleSheet, Text, View ,ScrollView, TextInput, TouchableOpacity,ImageBackground} from 'react-native'
 import React from 'react'
 import { useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword,} from "firebase/auth";
@@ -12,14 +12,14 @@ import { firebaseConfig } from '../../Config/firebaseConfig';
 
         const [email, setEmail] = useState("");
         const [password, setPassword] = useState("");
-        const [username, setUsername]= useState ("");
+        const [userName, setUserName]= useState ("");
         const [phone, setPhone]= useState ("");
         const navigation = useNavigation();
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
         const handleCreateAccount = () => {
-            createUserWithEmailAndPassword(auth, email, password, username, phone)
+            createUserWithEmailAndPassword(auth, email, password, userName, phone)
               .then((userCredential) => {
                 console.log("cuenta creada");
                 const user = userCredential.user;
@@ -33,7 +33,11 @@ import { firebaseConfig } from '../../Config/firebaseConfig';
           };
           return (
             <View style={styles.container}>
-             
+    <ImageBackground source={require('../img/cafeteria_login2.jpg')}  style={styles.image}>
+
+  
+     
+         <View style={styles.contenedor}>
               <ScrollView
                 contentContainerStyle={{
                   flex: 1,
@@ -44,11 +48,10 @@ import { firebaseConfig } from '../../Config/firebaseConfig';
                 }}
               >
                 <View style={styles.login}>
-                 
-                  <View>
+             
                     <Text style={styles.textInput}>Usuario</Text>
                     <TextInput
-                      onChangeText={(text) => setUsername(text)}
+                      onChangeText={(text) => setUserName(text)}
                       style={styles.input}
                       placeholder="usuario"
                     ></TextInput>
@@ -76,8 +79,11 @@ import { firebaseConfig } from '../../Config/firebaseConfig';
                   <TouchableOpacity onPress={handleCreateAccount} style={styles.button}>
                     <Text style={styles.textInput2}>Registro</Text>
                   </TouchableOpacity>
-                </View>
+              
               </ScrollView>
+              </View>
+              </ImageBackground>
+              
             </View>
           );
       };
@@ -86,46 +92,58 @@ import { firebaseConfig } from '../../Config/firebaseConfig';
 export default RegisterScreen
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#f2f2f2',
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-    image: {
-        width:'40%',
-        height:'40%',
-        resizeMode: "cover",
-      },
-    input: {
-      width: 250,
-      height: 50,
-      marginVertical: 10,
-      padding: 10,
-      borderWidth:2,
-      borderColor: "#451717",
-      borderRadius: 10,
-      backgroundColor: "#fff",
+  container: {
+     
+      flex: 1,
+      backgroundColor: '#f2f2f2',
+   
     },
-    textInput: {
-      fontSize: 17,
-      fontWeight: "400",
-      color: "#696969",
+    contenedor:{
+
+      marginVertical:50,
+      alignItems: 'center',
+      justifyContent:'center',
     },
-    textInput2: {
-      fontSize: 20,
-      fontWeight: "400",
-      color: "#f1f1f1",
+  image: {
+    flex:1,
+   
+     resizeMode: 'cover',
+     
     },
-    button: {
-      width: 250,
-      height: 40,
-      borderRadius: 10,
-      backgroundColor: "#451717",
-      alignItems: "center",
-      justifyContent: "center",
-      marginVertical: 10,
-      color: '#fafafa',
-    },
+  input: {
+    width: 250,
+    height: 50,
+    marginVertical: 10,
+    padding: 10,
+    borderWidth:1,
+    borderColor: "#451717",
+    borderRadius: 10,
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    color: 'white',
+    fontSize: 20,
+    fontWeight: "600",
+  },
+  textInput: {
+    justifyContent:'flex-start',
+    fontSize: 20,
+    fontWeight: "600",
+    color: "#fff",
+  },
+  textInput2: {
+    fontSize: 20,
+    fontWeight: "400",
+    color: "#f1f1f1",
+  },
+  button: {
+    marginVertical:10,
+    width: 250,
+    height: 40,
+    borderRadius: 10,
+    backgroundColor: 'rgba(44, 33, 30, 0.8)',
+    alignItems: "center",
+    justifyContent: "center",
+    
+    color: '#fafafa',
+  },
 
 })
