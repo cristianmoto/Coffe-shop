@@ -24,7 +24,7 @@ const LoginScreen = () => {
         console.log("sesion iniciada");
         const user = userCredential.user;
         console.log(user);
-       navigation.navigate('Menu');
+       navigation.navigate('Admin');
        const { displayName } = userCredential.user;
        setUserName(displayName);
       })
@@ -59,7 +59,7 @@ const LoginScreen = () => {
         <TouchableOpacity onPress={() => navigation.navigate('Registro')} style={styles.button}>
             <Text style={styles.textInput2}>Registro</Text>
           </TouchableOpacity>
-          </View >
+          </View>
           </ImageBackground>
         </View>
   
