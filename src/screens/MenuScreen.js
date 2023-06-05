@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
     height: "20%",
   },
   container: {
+    flexDirection: 'column',
     flex:1,
     marginBottom: 20,
     marginHorizontal:5,

@@ -24,9 +24,9 @@ const LoginScreen = () => {
         console.log("sesion iniciada");
         const user = userCredential.user;
         console.log(user);
-       navigation.navigate('Admin');
+       navigation.navigate('Menu');
        const { displayName } = userCredential.user;
-       setUserName(displayName);
+      setUserName(displayName);
       })
       .catch((error) => {
         console.log(error);
